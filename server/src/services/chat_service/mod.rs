@@ -1,7 +1,7 @@
 pub mod chat {
 	tonic::include_proto!("chat");
 }
-use chat::{chat_server::Chat, Empty, Message};
+use chat::{chat_server::Chat, Empty, Message, Reply, User};
 use std::{collections::HashMap, sync::Arc};
 use tokio::sync::{mpsc, RwLock};
 use tokio_stream::wrappers::ReceiverStream;
@@ -73,5 +73,11 @@ impl Chat for ChatService {
 		self.connections.read().await.broadcast(msg).await;
 
 		Ok(Response::new(Empty {}))
+	}
+	async fn say_hello(&self, request: Request<User>) -> Result<Response<Reply>, Status> {
+		let User { name, .. } = request.into_inner();
+		Ok(Response::new(Reply {
+			hi: format!("Hello {}!", name),
+		}))
 	}
 }

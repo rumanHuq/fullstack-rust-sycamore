@@ -11,9 +11,12 @@ message Message {
   string content = 2;
 }
 
+message Reply { string hi = 1; }
+
 message Empty {}
 
 service Chat {
   rpc UserJoin(User) returns (stream Message) {};
   rpc SendMessage(Message) returns (Empty) {};
+  rpc SayHello(User) returns (Reply) {};
 }

@@ -4,14 +4,14 @@ name    = "server"
 version = "0.1.0"
 
 [dependencies]
-prost        = "0.9.0 "
-tokio        = { version = "1.0", features = ["macros", "rt-multi-thread"] }
+prost        = "0.9.0"
+tokio        = { version = "1.12.0", features = ["macros", "rt-multi-thread"] }
 tokio-stream = "0.1.7"
-tonic        = "0.5"
-tonic-web    = "0.1.0"
+tonic        = "0.6.1"
+tonic-web    = "0.2.0"
 
 [build-dependencies]
-tonic-build = "0.5"
+tonic-build = "0.6.0"
 
 [dev-dependencies]
 pretty_assertions = "1.0.0"
